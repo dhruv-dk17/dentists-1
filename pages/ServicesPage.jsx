@@ -2,8 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
 import CTASection from '../components/CTASection';
-
-const springConfig = { type: "spring", stiffness: 100, damping: 15 };
+import SEO from '../components/SEO';
+import { springConfig } from '../constants';
 
 const servicesList = [
   {
@@ -43,11 +43,16 @@ const servicesList = [
 export default function ServicesPage() {
   return (
     <PageTransition>
+      <SEO 
+        title="Our Services" 
+        description="Comprehensive dental services in Surat including BPS dentures, dental implants, root canal, and painless dental treatments."
+        keywords="Dental Services Surat, BPS Dentures Surat, Dental Implants Surat, Root Canal Surat"
+      />
       {/* Header */}
-      <section style={{ padding: '150px 0 80px', background: 'var(--dark, #0F172A)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ padding: '150px 0 80px', background: '#0F172A', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
         <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '800px', margin: '0 auto', padding: '0 20px' }}>
           <motion.span 
-            style={{ color: 'var(--primary, #0EA5E9)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '2px' }}
+            style={{ color: '#0EA5E9', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '2px' }}
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={springConfig}
           >
             Our Expertise
@@ -68,7 +73,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Grid */}
-      <section style={{ padding: '100px 0', background: 'var(--light-gray, #F8FAFC)' }}>
+      <section style={{ padding: '100px 0', background: '#F8FAFC' }}>
         <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px' }}>
             {servicesList.map((service, index) => (
@@ -98,15 +103,15 @@ export default function ServicesPage() {
 
                 {/* Card Content */}
                 <div style={{ padding: '30px', display: 'flex', flexDirection: 'column', gap: '15px', flexGrow: 1 }}>
-                  <h2 style={{ fontSize: '1.5rem', color: 'var(--dark, #0F172A)', fontWeight: '800', margin: 0 }}>
+                  <h2 style={{ fontSize: '1.5rem', color: '#0F172A', fontWeight: '800', margin: 0 }}>
                     {service.title}
                   </h2>
-                  <p style={{ color: 'var(--gray, #64748B)', fontSize: '1rem', lineHeight: '1.7', margin: 0 }}>
+                  <p style={{ color: '#64748B', fontSize: '1rem', lineHeight: '1.7', margin: 0 }}>
                     {service.desc}
                   </p>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     {service.features.map((feat, i) => (
-                      <li key={i} style={{ color: 'var(--dark, #0F172A)', display: 'flex', alignItems: 'center', gap: '10px', fontWeight: '500', opacity: 0.8 }}>
+                      <li key={i} style={{ color: '#0F172A', display: 'flex', alignItems: 'center', gap: '10px', fontWeight: '500', opacity: 0.8 }}>
                         <span style={{ color: service.color, fontWeight: 'bold' }}>✓</span> {feat}
                       </li>
                     ))}

@@ -2,8 +2,8 @@ import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
 import CTASection from '../components/CTASection';
-
-const springConfig = { type: "spring", stiffness: 100, damping: 15 };
+import SEO from '../components/SEO';
+import { springConfig } from '../constants';
 
 const galleryImages = [
   { src: "images/waiting_area.png", title: "Premium Waiting Area", desc: "Designed for your comfort and relaxation." },
@@ -17,6 +17,11 @@ export default function About() {
 
   return (
     <PageTransition>
+      <SEO 
+        title="About Our Clinic | Expert Dentists in Surat" 
+        description="Meet Dr. Dhruv Khuman and the expert team at Promise Dental Clinic. Specializing in BPS dentures, dental implants, and painless dental care in Jahangirabad, Surat."
+        keywords="Dr. Dhruv Khuman, Best Dentist in Jahangirabad, Promise Dental Clinic Surat, BPS Denture Specialist Surat"
+      />
       {/* Header Section */}
       <section style={{ padding: '150px 0 100px', background: '#F8FAFC', position: 'relative', overflow: 'hidden' }}>
         <motion.div 
@@ -71,7 +76,7 @@ export default function About() {
                 transition={springConfig}
               >
                 <motion.div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', borderRadius: '30px', transform: 'translateZ(50px)' }}>
-                  <img src="images/doctor.png" alt="Dr. xyz" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="images/doctor.png" alt="Dr. Dhruv Khuman" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </motion.div>
               </motion.div>
             </motion.div>
@@ -85,10 +90,10 @@ export default function About() {
             >
               <span style={{ color: '#F59E0B', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px' }}>Lead Dentist</span>
               <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: '#0F172A', marginTop: '10px', marginBottom: '30px' }}>
-                Dr. xyz
+                Dr. Dhruv Khuman
               </h2>
               <p style={{ fontSize: '1.125rem', color: '#475569', lineHeight: 1.8, marginBottom: '20px' }}>
-                With a passion for restoring smiles and a commitment to painless dentistry, Dr. xyz has established Promise Dental Clinic as a beacon of trust in Surat.
+                With a passion for restoring smiles and a commitment to painless dentistry, Dr. Dhruv Khuman has established Promise Dental Clinic as a beacon of trust in Surat.
               </p>
               <p style={{ fontSize: '1.125rem', color: '#475569', lineHeight: 1.8, marginBottom: '40px' }}>
                 He specializes in advanced prosthodontics (BPS Dentures) and implantology, ensuring that every patient receives treatment that is not only effective but also life-changing.

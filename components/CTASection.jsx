@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const springConfig = { type: "spring", stiffness: 120, damping: 14 };
 
@@ -63,42 +64,46 @@ export default function CTASection() {
           </p>
 
           <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <motion.button 
-              style={{ 
-                padding: '18px 40px', 
-                background: '#0EA5E9', 
-                color: 'white', 
-                border: 'none', 
-                borderRadius: '16px', 
-                fontSize: '1.125rem', 
-                fontWeight: '700', 
-                cursor: 'pointer',
-                boxShadow: '0 10px 25px rgba(14,165,233,0.4)'
-              }}
-              whileHover={{ scale: 1.08, y: -2, boxShadow: '0 15px 35px rgba(14,165,233,0.6)' }}
-              whileTap={{ scale: 0.95 }}
-              transition={springConfig}
-            >
-              Book Your Visit
-            </motion.button>
+            <Link to="/appointment" style={{ textDecoration: 'none' }}>
+              <motion.button 
+                style={{ 
+                  padding: '18px 40px', 
+                  background: '#0EA5E9', 
+                  color: 'white', 
+                  border: 'none', 
+                  borderRadius: '16px', 
+                  fontSize: '1.125rem', 
+                  fontWeight: '700', 
+                  cursor: 'pointer',
+                  boxShadow: '0 10px 25px rgba(14,165,233,0.4)'
+                }}
+                whileHover={{ scale: 1.08, y: -2, boxShadow: '0 15px 35px rgba(14,165,233,0.6)' }}
+                whileTap={{ scale: 0.95 }}
+                transition={springConfig}
+              >
+                Book Your Visit
+              </motion.button>
+            </Link>
             
-            <motion.button 
-              style={{ 
-                padding: '18px 40px', 
-                background: 'transparent', 
-                color: '#FFFFFF', 
-                border: '2px solid rgba(255,255,255,0.2)', 
-                borderRadius: '16px', 
-                fontSize: '1.125rem', 
-                fontWeight: '700', 
-                cursor: 'pointer'
-              }}
-              whileHover={{ scale: 1.08, background: 'rgba(255,255,255,0.1)', borderColor: 'rgba(255,255,255,0.4)' }}
-              whileTap={{ scale: 0.95 }}
-              transition={springConfig}
-            >
-              Call 082002 32074
-            </motion.button>
+            <a href="tel:+918200232074" style={{ textDecoration: 'none' }}>
+              <motion.button 
+                style={{ 
+                  padding: '18px 40px', 
+                  background: 'transparent', 
+                  color: '#FFFFFF', 
+                  border: '2px solid rgba(255,255,255,0.2)', 
+                  borderRadius: '16px', 
+                  fontSize: '1.125rem', 
+                  fontWeight: '700', 
+                  cursor: 'pointer'
+                }}
+                whileHover={{ scale: 1.08, background: 'rgba(255,255,255,0.1)', borderColor: 'rgba(255,255,255,0.4)' }}
+                whileTap={{ scale: 0.95 }}
+                transition={springConfig}
+              >
+                Call 082002 32074
+              </motion.button>
+            </a>
           </div>
         </motion.div>
         

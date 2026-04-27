@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-
-const springConfig = { type: "spring", stiffness: 120, damping: 14 };
+import { Link } from 'react-router-dom';
+import { springConfig } from '../constants';
 
 // Floating particle component
 const Particle = ({ delay, size, top, left, duration }) => (
@@ -52,7 +52,8 @@ export default function HeroSection() {
       style={{ 
         position: 'relative', 
         overflow: 'hidden', 
-        background: '#ffffff'
+        background: '#ffffff',
+        padding: '100px 0'
       }}
     >
       {/* Animated Gradient Background */}
@@ -127,24 +128,28 @@ export default function HeroSection() {
             Experience the future of dentistry with <span style={{ color: 'var(--dark)', fontWeight: '600' }}>Dr. XYZ</span>. We combine world-class technology with a gentle touch to give you a smile that lasts a lifetime.
           </motion.p>
           
-          <div className="hero-btns">
-            <motion.button 
-              className="btn btn-primary"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              transition={springConfig}
-            >
-              Book Appointment
-            </motion.button>
+          <div className="hero-btns" style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+            <Link to="/appointment">
+              <motion.button 
+                className="btn btn-primary"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={springConfig}
+              >
+                Book Appointment
+              </motion.button>
+            </Link>
             
-            <motion.button 
+            <motion.a 
+              href="tel:+918200232074"
               className="btn btn-secondary"
               whileHover={{ scale: 1.05, background: '#F1F5F9' }}
               whileTap={{ scale: 0.95 }}
               transition={springConfig}
+              style={{ textDecoration: 'none' }}
             >
               📞 082002 32074
-            </motion.button>
+            </motion.a>
           </div>
         </motion.div>
 
@@ -157,7 +162,7 @@ export default function HeroSection() {
         >
           {/* Tooth focus effect on hover container */}
           <motion.div
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 200 }}
             style={{ position: 'relative', width: '100%', maxWidth: '500px' }}
           >
@@ -179,19 +184,19 @@ export default function HeroSection() {
               }}
               transition={springConfig}
             >
-              {/* Main Image Placeholder */}
-              <div style={{ width: '100%', height: '400px', background: '#E0F2FE', borderRadius: '20px', overflow: 'hidden', position: 'relative' }}>
+              {/* Main Image */}
+              <div style={{ width: '100%', height: '450px', background: '#E0F2FE', borderRadius: '20px', overflow: 'hidden', position: 'relative' }}>
                 <img 
                   src="images/hero.png" 
                   alt="Premium Clinic" 
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
-                  onError={(e) => { e.target.src = 'https://via.placeholder.com/600x800?text=Premium+Clinic+Image' }}
+                  fetchpriority="high"
                 />
               </div>
 
               {/* Floating Image 1: Root Canal */}
               <motion.div 
-                style={{ position: 'absolute', top: '-40px', right: '-40px', width: '120px', height: '120px', borderRadius: '20px', overflow: 'hidden', border: '4px solid white', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', transform: 'translateZ(30px)' }}
+                style={{ position: 'absolute', top: '-30px', right: '-30px', width: '130px', height: '130px', borderRadius: '24px', overflow: 'hidden', border: '6px solid white', boxShadow: '0 20px 40px rgba(0,0,0,0.15)', transform: 'translateZ(30px)' }}
                 animate={{ y: [0, -15, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
               >
                 <img src="images/root_canal.png" alt="RCT" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -199,7 +204,7 @@ export default function HeroSection() {
 
               {/* Floating Image 2: Modern Dentistry */}
               <motion.div 
-                style={{ position: 'absolute', top: '150px', left: '-60px', width: '140px', height: '140px', borderRadius: '20px', overflow: 'hidden', border: '4px solid white', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', transform: 'translateZ(40px)' }}
+                style={{ position: 'absolute', bottom: '100px', left: '-50px', width: '150px', height: '150px', borderRadius: '24px', overflow: 'hidden', border: '6px solid white', boxShadow: '0 20px 40px rgba(0,0,0,0.15)', transform: 'translateZ(40px)' }}
                 animate={{ y: [0, 15, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               >
                 <img src="images/modern_dentistry.png" alt="Modern Dentistry" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -209,27 +214,27 @@ export default function HeroSection() {
               <motion.div 
                 style={{ 
                   position: 'absolute', 
-                  bottom: '-20px', 
-                  left: '-30px', 
+                  bottom: '-25px', 
+                  right: '-20px', 
                   background: 'white', 
-                  padding: '20px', 
-                  borderRadius: '20px',
+                  padding: '20px 25px', 
+                  borderRadius: '24px',
                   display: 'flex', 
                   alignItems: 'center', 
                   gap: '15px', 
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
-                  transform: 'translateZ(50px)' // 3D depth pop out
+                  boxShadow: '0 25px 50px rgba(0,0,0,0.1)',
+                  transform: 'translateZ(50px)' 
                 }}
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                whileHover={{ scale: 1.1, y: -15 }}
+                whileHover={{ scale: 1.05, y: -15 }}
               >
-                <div style={{ background: '#0ea5e9', width: '48px', height: '48px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '24px' }}>
+                <div style={{ background: '#0ea5e9', width: '50px', height: '50px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '24px', boxShadow: '0 10px 20px rgba(14,165,233,0.3)' }}>
                   🦷
                 </div>
                 <div>
-                  <h4 style={{ fontSize: '1.125rem', margin: '0 0 4px 0', color: '#0F172A' }}>Painless Expert</h4>
-                  <p style={{ fontSize: '0.875rem', margin: '0', color: '#64748B' }}>Advanced Technology</p>
+                  <h4 style={{ fontSize: '1.25rem', margin: '0 0 2px 0', color: '#0F172A', fontWeight: '800' }}>Painless Expert</h4>
+                  <p style={{ fontSize: '0.9rem', margin: '0', color: '#64748B', fontWeight: '500' }}>Advanced Technology</p>
                 </div>
               </motion.div>
             </motion.div>

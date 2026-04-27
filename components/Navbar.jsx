@@ -1,20 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const springConfig = { type: "spring", stiffness: 120, damping: 14 };
+import { springConfig, navLinks } from '../constants';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-
-  const navLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/about', label: 'About' },
-    { path: '/services', label: 'Services' },
-    { path: '/reviews', label: 'Reviews' },
-    { path: '/contact', label: 'Contact' },
-  ];
 
   return (
     <>
@@ -55,7 +46,7 @@ export default function Navbar() {
                   padding: '5px 0'
                 }}
               >
-                {link.label}
+                {link.name}
                 {location.pathname === link.path && (
                   <motion.div 
                     layoutId="underline"
@@ -99,17 +90,18 @@ export default function Navbar() {
         {isOpen && (
           <motion.div
             style={{
-              position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'var(--dark)', zIndex: 1001, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '20px', backdropFilter: 'blur(10px)'
+              position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(15, 23, 42, 0.98)', zIndex: 1001, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '20px', backdropFilter: 'blur(15px)'
             }}
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.1 }}
-            transition={springConfig}
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
           >
             <motion.button 
-              style={{ position: 'absolute', top: '20px', right: '30px', color: 'white', fontSize: '30px', cursor: 'pointer', background: 'none', border: 'none' }}
+              style={{ position: 'absolute', top: '25px', right: '25px', color: 'white', fontSize: '32px', cursor: 'pointer', background: 'rgba(255,255,255,0.1)', border: 'none', width: '50px', height: '50px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               onClick={() => setIsOpen(false)}
-              whileHover={{ rotate: 90 }}
+              whileHover={{ rotate: 90, background: 'rgba(255,255,255,0.2)' }}
+              whileTap={{ scale: 0.9 }}
               aria-label="Close Menu"
             >
               ✕
@@ -117,16 +109,16 @@ export default function Navbar() {
             {navLinks.map((link, index) => (
               <motion.div 
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1, ...springConfig }}
               >
                 <Link 
                   to={link.path} 
-                  style={{ color: 'white', fontSize: '2rem', fontWeight: '700', textDecoration: 'none' }}
+                  style={{ color: location.pathname === link.path ? 'var(--primary)' : 'white', fontSize: '2.5rem', fontWeight: '800', textDecoration: 'none', letterSpacing: '-1px' }}
                   onClick={() => setIsOpen(false)}
                 >
-                  {link.label}
+                  {link.name}
                 </Link>
               </motion.div>
             ))}
@@ -136,7 +128,7 @@ export default function Navbar() {
                 transition={{ delay: navLinks.length * 0.1, ...springConfig }}
               >
                 <Link to="/appointment" onClick={() => setIsOpen(false)}>
-                  <button className="btn btn-primary" style={{ fontSize: '1.25rem', marginTop: '20px' }}>
+                  <button className="btn btn-primary" style={{ fontSize: '1.25rem', marginTop: '30px', padding: '20px 40px' }}>
                     Book Appointment
                   </button>
                 </Link>

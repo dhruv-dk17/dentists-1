@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
-const springConfig = { type: "spring", stiffness: 120, damping: 14 };
+import { Link } from 'react-router-dom';
+import { springConfig } from '../constants';
 
 const servicesData = [
   {
@@ -127,17 +127,17 @@ export default function Services() {
                   {service.desc}
                 </p>
                 
-                <motion.a 
-                  href="#" 
+                <Link 
+                  to="/services" 
                   style={{ 
                     color: 'var(--primary)', fontWeight: '700', textDecoration: 'none', 
                     display: 'inline-flex', alignItems: 'center', gap: '8px'
                   }}
-                  whileHover={{ x: 5 }}
-                  transition={springConfig}
                 >
-                  Learn More <span>→</span>
-                </motion.a>
+                  <motion.span whileHover={{ x: 5 }} transition={springConfig}>
+                    Learn More <span>→</span>
+                  </motion.span>
+                </Link>
               </div>
             </motion.div>
           ))}

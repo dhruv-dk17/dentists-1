@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
-
-const springConfig = { type: "spring", stiffness: 100, damping: 15 };
-
-// ⚠️ PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL BELOW
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxWXfaVvktp-sAEKqh4lYUDP0xR88mSLIw2wZBdsRF8UwvC4k6cOHqwugguq1Y1fh4/exec';
+import SEO from '../components/SEO';
+import { springConfig, GOOGLE_SCRIPT_URL } from '../constants';
 
 export default function Appointment() {
   const [formData, setFormData] = useState({ name: '', phone: '', treatment: '' });
@@ -19,23 +16,29 @@ export default function Appointment() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Hardcore Validation
+    if (formData.phone.length < 10) {
+      setErrorMsg('Please enter a valid 10-digit phone number.');
+      return;
+    }
+
     setIsSubmitting(true);
     setErrorMsg('');
 
     try {
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
+      await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors', // Apps Script requires no-cors from browser
+        mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, type: 'Appointment Booking' }),
       });
 
-      // no-cors mode returns opaque response, so we just assume success
       setIsSuccess(true);
       setFormData({ name: '', phone: '', treatment: '' });
     } catch (err) {
       console.error('Submission error:', err);
-      setErrorMsg('Something went wrong. Please call us at 082002 32074 to book your appointment.');
+      setErrorMsg('Could not connect to the booking system. Please call 082002 32074.');
     } finally {
       setIsSubmitting(false);
     }
@@ -43,6 +46,11 @@ export default function Appointment() {
 
   return (
     <PageTransition>
+      <SEO 
+        title="Book an Appointment" 
+        description="Book your dental appointment online at Promise Dental Clinic. Easy, fast, and painless dental care in Surat."
+        keywords="Book Dentist Surat, Dental Appointment Surat, Promise Dental Booking"
+      />
       <section style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '120px 20px', background: '#0F172A', position: 'relative', overflow: 'hidden' }}>
         
         {/* Animated Background */}
@@ -62,25 +70,59 @@ export default function Appointment() {
           <div style={{ padding: '60px 40px' }}>
             {isSuccess ? (
               <motion.div 
-                style={{ textAlign: 'center', padding: '40px 0' }}
-                initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={springConfig}
+                style={{ textAlign: 'center', padding: '60px 0' }}
+                initial={{ opacity: 0, scale: 0.9 }} 
+                animate={{ opacity: 1, scale: 1 }} 
+                transition={springConfig}
               >
-                <motion.div 
-                  style={{ fontSize: '5rem', marginBottom: '20px' }}
-                  initial={{ scale: 0 }} animate={{ scale: 1, rotate: [0, 20, 0] }} transition={{ type: 'spring', delay: 0.2 }}
+                <div style={{ position: 'relative', display: 'inline-block', marginBottom: '30px' }}>
+                  <motion.div 
+                    style={{ fontSize: '6rem', position: 'relative', zIndex: 2 }}
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.2, type: 'spring' }}
+                  >
+                    ✨
+                  </motion.div>
+                  <motion.div 
+                    style={{ position: 'absolute', top: '50%', left: '50%', x: '-50%', y: '-50%', width: '120px', height: '120px', background: 'rgba(14,165,233,0.2)', borderRadius: '50%', filter: 'blur(20px)', zIndex: 1 }}
+                    animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                </div>
+
+                <motion.h2 
+                  style={{ color: 'white', fontSize: '2.5rem', fontWeight: '800', marginBottom: '20px', letterSpacing: '-1px' }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
                 >
-                  🎉
+                  Booking Confirmed!
+                </motion.h2>
+                
+                <motion.p 
+                  style={{ color: '#94A3B8', fontSize: '1.25rem', lineHeight: '1.6', maxWidth: '400px', margin: '0 auto 40px' }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  Thank you for choosing Promise Dental. We've received your request and will call you within <span style={{ color: '#0EA5E9', fontWeight: '700' }}>30 minutes</span> to finalize your slot.
+                </motion.p>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  <motion.button
+                    onClick={() => setIsSuccess(false)}
+                    style={{ padding: '16px 40px', background: 'rgba(14,165,233,0.1)', color: '#0EA5E9', border: '1px solid rgba(14,165,233,0.2)', borderRadius: '20px', fontSize: '1.1rem', fontWeight: '700', cursor: 'pointer' }}
+                    whileHover={{ scale: 1.05, background: 'rgba(14,165,233,0.2)' }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Done
+                  </motion.button>
                 </motion.div>
-                <h2 style={{ color: 'white', fontSize: '2.5rem', marginBottom: '15px' }}>Request Received!</h2>
-                <p style={{ color: '#94A3B8', fontSize: '1.125rem', marginBottom: '30px' }}>Our team will contact you shortly to confirm your appointment time.</p>
-                <motion.button
-                  onClick={() => setIsSuccess(false)}
-                  style={{ padding: '14px 30px', background: 'rgba(255,255,255,0.1)', color: 'white', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '16px', fontSize: '1rem', fontWeight: '600', cursor: 'pointer' }}
-                  whileHover={{ scale: 1.05, background: 'rgba(255,255,255,0.15)' }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Book Another
-                </motion.button>
               </motion.div>
             ) : (
               <>
