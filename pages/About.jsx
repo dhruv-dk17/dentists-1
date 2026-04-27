@@ -64,11 +64,11 @@ export default function About() {
                 whileHover={{ rotateY: 10, rotateX: -10, scale: 1.02 }}
                 transition={springConfig}
               >
-                <motion.div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '6rem', transform: 'translateZ(50px)' }}>
-                  👨‍⚕️
+                <motion.div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', borderRadius: '30px', transform: 'translateZ(50px)' }}>
+                  <img src="/images/doctor.png" alt="Dr. xyz" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </motion.div>
                 {/* Simulated Image overlay */}
-                <div style={{ position: 'absolute', inset: 0, background: 'url(https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=800&auto=format&fit=crop) center/cover', opacity: 0.8, mixBlendMode: 'overlay' }} />
+
               </motion.div>
             </motion.div>
 
@@ -81,7 +81,7 @@ export default function About() {
             >
               <span style={{ color: '#F59E0B', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px' }}>Lead Dentist</span>
               <h2 style={{ fontSize: '3rem', fontWeight: '800', color: '#0F172A', marginTop: '10px', marginBottom: '30px' }}>
-                Dr. Dharmendar Jadav
+                Dr. xyz
               </h2>
               <p style={{ fontSize: '1.125rem', color: '#475569', lineHeight: 1.8, marginBottom: '20px' }}>
                 With a passion for restoring smiles and a commitment to painless dentistry, Dr. Jadav has established Promise Dental Clinic as a beacon of trust in Surat.

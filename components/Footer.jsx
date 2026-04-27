@@ -38,7 +38,7 @@ export default function Footer() {
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2, ...springConfig }}>
             <h4 style={{ color: 'white', fontSize: '1.125rem', marginBottom: '20px', fontWeight: '700' }}>Contact Info</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-              <p style={{ margin: 0 }}>📍 Vitoria Heights, Ugat Canal Road, Jahangirabad, Surat, Gujarat 395005</p>
+              <p style={{ margin: 0 }}>📍 Office Number 113, First Floor, Vitoria Height, Ugat Canal Road, Opposite Raj Harmony, Jahangirabad, Surat-395005, Gujarat</p>
               <p style={{ margin: 0 }}>📞 <a href="tel:+918200232074" style={{ color: '#0EA5E9', textDecoration: 'none' }}>082002 32074</a></p>
               <p style={{ margin: 0 }}>⏰ Mon-Sat: 10:00 AM - 9:00 PM</p>
             </div>

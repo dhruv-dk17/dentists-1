@@ -125,7 +125,7 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            Experience the future of dentistry with Dr. XYZ. We combine world-class technology with a gentle touch to give you a smile that lasts a lifetime.
+            Experience the future of dentistry with Dr. xyz. We combine world-class technology with a gentle touch to give you a smile that lasts a lifetime.
           </motion.p>
           
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>

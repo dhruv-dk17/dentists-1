@@ -28,7 +28,7 @@ export default function Contact() {
             >
               <div style={{ fontSize: '3rem', marginBottom: '20px' }}>📍</div>
               <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: '#0F172A', marginBottom: '15px' }}>Visit Clinic</h3>
-              <p style={{ color: '#64748B', lineHeight: '1.6' }}>Vitoria Heights, Ugat Canal Road,<br/>Jahangirabad, Surat, Gujarat 395005</p>
+              <p style={{ color: '#64748B', lineHeight: '1.6' }}>Office Number 113, First Floor, Vitoria Height,<br/>Ugat Canal Road, Opposite Raj Harmony,<br/>Jahangirabad, Surat-395005, Gujarat</p>
             </motion.div>
 
             <motion.div 
@@ -62,7 +62,7 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={springConfig}
           >
-             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.539824647318!2d72.78440787596008!3d21.210433781515286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04c552cc61eb3%3A0x6735e2de95c2b0b1!2sPromise%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1709214300000!5m2!1sen!2sin" width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.2422897782867!2d72.7778941!3d21.222238699999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04d63a36d2ef1%3A0xdd0066327109ee1b!2sPromise%20Dental%20clinic!5e0!3m2!1sen!2sin!4v1777295020546!5m2!1sen!2sin" width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
           </motion.div>
 
         </div>
