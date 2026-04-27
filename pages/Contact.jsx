@@ -13,11 +13,16 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, type: 'Contact Inquiry' })
+      const params = new URLSearchParams({
+        ...formData,
+        type: 'Contact Inquiry'
+      });
+
+      const url = `${GOOGLE_SCRIPT_URL}?${params.toString()}`;
+
+      await fetch(url, {
+        method: 'GET',
+        mode: 'no-cors'
       });
       setIsSuccess(true);
       setFormData({ name: '', email: '', subject: '', message: '' });

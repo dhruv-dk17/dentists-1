@@ -27,11 +27,17 @@ export default function Appointment() {
     setErrorMsg('');
 
     try {
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, type: 'Appointment Booking' }),
+      const params = new URLSearchParams({
+        ...formData,
+        type: 'Appointment Booking'
+      });
+
+      // Use GET request for maximum reliability with Google Scripts
+      const url = `${GOOGLE_SCRIPT_URL}?${params.toString()}`;
+
+      await fetch(url, {
+        method: 'GET',
+        mode: 'no-cors'
       });
 
       setIsSuccess(true);
