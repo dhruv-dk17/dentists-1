@@ -1,9 +1,9 @@
 services:
   - type: web
     name: promise-dental-clinic
-    env: static
-    buildCommand: npm run build
-    publishPath: dist
+    runtime: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
     routes:
       - type: rewrite
         source: /*
