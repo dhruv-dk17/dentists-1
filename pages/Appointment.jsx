@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 import { springConfig, GOOGLE_SCRIPT_URL } from '../constants';
 
 export default function Appointment() {
-  const [formData, setFormData] = useState({ name: '', phone: '', treatment: '', date: '' });
+  const [formData, setFormData] = useState({ name: '', phone: '', email: '', treatment: '', date: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -41,7 +41,7 @@ export default function Appointment() {
       });
 
       setIsSuccess(true);
-      setFormData({ name: '', phone: '', treatment: '', date: '' });
+      setFormData({ name: '', phone: '', email: '', treatment: '', date: '', message: '' });
     } catch (err) {
       console.error('Submission error:', err);
       setErrorMsg('Could not connect to the booking system. Please call 082002 32074.');
@@ -167,6 +167,15 @@ export default function Appointment() {
                     </motion.div>
                   </div>
 
+                  <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.25, ...springConfig }}>
+                    <label style={{ display: 'block', color: '#94A3B8', marginBottom: '8px', fontSize: '0.9rem' }}>Email Address</label>
+                    <input 
+                      type="email" name="email" value={formData.email} onChange={handleChange} required
+                      placeholder="e.g. patient@example.com"
+                      style={{ width: '100%', padding: '16px 20px', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.05)', color: 'white', fontSize: '1rem', outline: 'none', boxSizing: 'border-box' }} 
+                    />
+                  </motion.div>
+
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
                     <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, ...springConfig }}>
                       <label style={{ display: 'block', color: '#94A3B8', marginBottom: '8px', fontSize: '0.9rem' }}>Treatment</label>
@@ -192,6 +201,15 @@ export default function Appointment() {
                       />
                     </motion.div>
                   </div>
+
+                  <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.45, ...springConfig }}>
+                    <label style={{ display: 'block', color: '#94A3B8', marginBottom: '8px', fontSize: '0.9rem' }}>Message (Optional)</label>
+                    <textarea 
+                      name="message" value={formData.message} onChange={handleChange}
+                      placeholder="Any specific requests or dental concerns?"
+                      style={{ width: '100%', padding: '16px 20px', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.05)', color: 'white', fontSize: '1rem', outline: 'none', minHeight: '100px', resize: 'none', boxSizing: 'border-box' }} 
+                    />
+                  </motion.div>
 
                   <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, ...springConfig }} style={{ marginTop: '10px' }}>
                     <motion.button 
