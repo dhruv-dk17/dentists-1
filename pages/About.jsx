@@ -5,6 +5,12 @@ import CTASection from '../components/CTASection';
 
 const springConfig = { type: "spring", stiffness: 100, damping: 15 };
 
+const galleryImages = [
+  { src: "images/waiting_area.png", title: "Premium Waiting Area", desc: "Designed for your comfort and relaxation." },
+  { src: "images/surgery_room.png", title: "Modern Surgery Suite", desc: "Equipped with state-of-the-art dental technology." },
+  { src: "images/clinic.png", title: "Sterilized Environment", desc: "Adhering to international safety standards." }
+];
+
 export default function About() {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
@@ -26,7 +32,7 @@ export default function About() {
             Our Story
           </motion.span>
           <motion.h1 
-            style={{ fontSize: '4rem', fontWeight: '800', color: '#0F172A', marginBottom: '20px', lineHeight: 1.1 }}
+            style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)', fontWeight: '800', color: '#0F172A', marginBottom: '20px', lineHeight: 1.1 }}
             initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ ...springConfig, delay: 0.2 }}
           >
             Excellence in Dental Care
@@ -41,9 +47,9 @@ export default function About() {
       </section>
 
       {/* About Content */}
-      <section style={{ padding: '100px 0', background: 'white' }}>
+      <section style={{ background: 'white', padding: '80px 0' }}>
         <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '60px', alignItems: 'center' }}>
+          <div className="grid-2-start">
             
             {/* 3D Image Container */}
             <motion.div 
@@ -65,10 +71,8 @@ export default function About() {
                 transition={springConfig}
               >
                 <motion.div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', borderRadius: '30px', transform: 'translateZ(50px)' }}>
-                  <img src="/images/doctor.png" alt="Dr. xyz" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="images/doctor.png" alt="Dr. xyz" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </motion.div>
-                {/* Simulated Image overlay */}
-
               </motion.div>
             </motion.div>
 
@@ -80,17 +84,17 @@ export default function About() {
               transition={{ ...springConfig, delay: 0.2 }}
             >
               <span style={{ color: '#F59E0B', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px' }}>Lead Dentist</span>
-              <h2 style={{ fontSize: '3rem', fontWeight: '800', color: '#0F172A', marginTop: '10px', marginBottom: '30px' }}>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: '#0F172A', marginTop: '10px', marginBottom: '30px' }}>
                 Dr. xyz
               </h2>
               <p style={{ fontSize: '1.125rem', color: '#475569', lineHeight: 1.8, marginBottom: '20px' }}>
-                With a passion for restoring smiles and a commitment to painless dentistry, Dr. Jadav has established Promise Dental Clinic as a beacon of trust in Surat.
+                With a passion for restoring smiles and a commitment to painless dentistry, Dr. xyz has established Promise Dental Clinic as a beacon of trust in Surat.
               </p>
               <p style={{ fontSize: '1.125rem', color: '#475569', lineHeight: 1.8, marginBottom: '40px' }}>
                 He specializes in advanced prosthodontics (BPS Dentures) and implantology, ensuring that every patient receives treatment that is not only effective but also life-changing.
               </p>
               
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px' }}>
+              <div className="grid-2-small">
                 <motion.div whileHover={{ y: -5 }} transition={springConfig} style={{ background: '#F8FAFC', padding: '20px', borderRadius: '16px', border: '1px solid #F1F5F9' }}>
                   <h3 style={{ fontSize: '2rem', color: '#0EA5E9', fontWeight: '800', margin: '0 0 10px' }}>10+</h3>
                   <p style={{ color: '#64748B', margin: 0, fontWeight: '600' }}>Years Experience</p>
@@ -106,7 +110,40 @@ export default function About() {
         </div>
       </section>
 
+      {/* Facility Gallery */}
+      <section style={{ padding: '100px 0', background: '#F8FAFC' }}>
+        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+            <span style={{ color: '#0EA5E9', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '2px' }}>Our Environment</span>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: '#0F172A', marginTop: '10px' }}>Our State-of-the-Art Facility</h2>
+          </div>
+          
+          <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
+            {galleryImages.map((img, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ ...springConfig, delay: i * 0.1 }}
+                whileHover={{ y: -10 }}
+                style={{ background: 'white', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.05)', border: '1px solid #F1F5F9' }}
+              >
+                <div style={{ width: '100%', height: '250px', overflow: 'hidden' }}>
+                  <img src={img.src} alt={img.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} className="gallery-img" />
+                </div>
+                <div style={{ padding: '25px' }}>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#0F172A', marginBottom: '10px' }}>{img.title}</h3>
+                  <p style={{ color: '#64748B', margin: 0, lineHeight: 1.6 }}>{img.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <CTASection />
     </PageTransition>
   );
 }
+

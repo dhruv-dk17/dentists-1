@@ -13,11 +13,14 @@ import Reviews from './pages/Reviews';
 import Contact from './pages/Contact';
 import Appointment from './pages/Appointment';
 
+import ScrollToTop from './components/ScrollToTop';
+
 function App() {
   const location = useLocation();
 
   return (
     <div className="app-container" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <ScrollToTop />
       <Navbar />
       
       <main style={{ flex: 1, paddingTop: '80px' }}> {/* Padding top for fixed navbar */}

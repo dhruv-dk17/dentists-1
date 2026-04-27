@@ -5,11 +5,14 @@ import Testimonials from '../components/Testimonials';
 import CTASection from '../components/CTASection';
 import PageTransition from '../components/PageTransition';
 
+import GalleryPreview from '../components/GalleryPreview';
+
 export default function Home() {
   return (
     <PageTransition>
       <HeroSection />
       <Services />
+      <GalleryPreview />
       <Testimonials />
       <CTASection />
     </PageTransition>

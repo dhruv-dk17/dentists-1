@@ -7,6 +7,11 @@ export default function CTASection() {
   return (
     <section style={{ padding: '120px 0', position: 'relative', overflow: 'hidden', backgroundColor: '#0F172A' }}>
       
+      {/* Background Image Overlay */}
+      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0.15, zIndex: 0 }}>
+        <img src="images/clinic.png" alt="Clinic" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+      </div>
+      
       {/* Animated Gradient Background Loop */}
       <motion.div
         style={{
@@ -15,7 +20,7 @@ export default function CTASection() {
           left: '-10%',
           width: '120%',
           height: '200%',
-          background: 'linear-gradient(45deg, rgba(14, 165, 233, 0.2) 0%, rgba(251, 191, 36, 0.1) 50%, rgba(14, 165, 233, 0.2) 100%)',
+          background: 'linear-gradient(45deg, rgba(14, 165, 233, 0.1) 0%, rgba(251, 191, 36, 0.05) 50%, rgba(14, 165, 233, 0.1) 100%)',
           zIndex: 0
         }}
         animate={{ 
@@ -34,26 +39,26 @@ export default function CTASection() {
           transition={springConfig}
           style={{
             background: 'rgba(255, 255, 255, 0.05)',
-            backdropFilter: 'blur(10px)',
+            backdropFilter: 'blur(20px)',
             border: '1px solid rgba(255,255,255,0.1)',
             padding: '60px 40px',
-            borderRadius: '30px',
-            boxShadow: '0 30px 60px rgba(0,0,0,0.3)'
+            borderRadius: '40px',
+            boxShadow: '0 40px 80px rgba(0,0,0,0.5)'
           }}
         >
           <motion.div 
-            style={{ fontSize: '48px', marginBottom: '20px' }}
+            style={{ width: '80px', height: '80px', background: '#0EA5E9', borderRadius: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 30px', fontSize: '40px', boxShadow: '0 15px 30px rgba(14,165,233,0.3)' }}
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
             🦷
           </motion.div>
           
-          <h2 style={{ fontSize: '3rem', fontWeight: '800', color: '#FFFFFF', marginBottom: '20px', lineHeight: '1.2' }}>
+          <h2 style={{ fontWeight: '800', color: '#FFFFFF', marginBottom: '20px', lineHeight: '1.2' }}>
             Ready for a <span style={{ color: '#0EA5E9' }}>Painless</span> Experience?
           </h2>
           
-          <p style={{ color: '#94A3B8', fontSize: '1.125rem', marginBottom: '40px', maxWidth: '500px', margin: '0 auto 40px' }}>
+          <p style={{ color: '#94A3B8', fontSize: '1.125rem', marginBottom: '40px', maxWidth: '500px', margin: '0 auto 40px' }} className="cta-desc">
             Join thousands of happy patients in Surat. Book your appointment today and take the first step towards a perfect smile.
           </p>
 

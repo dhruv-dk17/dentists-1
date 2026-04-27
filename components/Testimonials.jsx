@@ -44,7 +44,7 @@ export default function Testimonials() {
           </h2>
         </motion.div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px' }}>
+        <div className="grid-adaptive">
           {testimonials.map((item, index) => (
             <motion.div
               key={index}
@@ -86,13 +86,18 @@ export default function Testimonials() {
                 </p>
                 
                 <div style={{ transform: 'translateZ(40px)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid #E2E8F0', paddingTop: '20px' }}>
-                  <div>
-                    <h4 style={{ color: '#0F172A', fontWeight: '700', fontSize: '1.125rem', margin: '0 0 5px 0' }}>
-                      {item.name}
-                    </h4>
-                    <span style={{ color: '#64748B', fontSize: '0.875rem' }}>
-                      {item.treatment}
-                    </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                    <div style={{ width: '50px', height: '50px', borderRadius: '50%', overflow: 'hidden', border: '2px solid #0EA5E9' }}>
+                      <img src={`https://i.pravatar.cc/100?img=${index + 10}`} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                    <div>
+                      <h4 style={{ color: '#0F172A', fontWeight: '700', fontSize: '1.125rem', margin: '0 0 5px 0' }}>
+                        {item.name}
+                      </h4>
+                      <span style={{ color: '#64748B', fontSize: '0.875rem' }}>
+                        {item.treatment}
+                      </span>
+                    </div>
                   </div>
                   <div style={{ color: '#FBBF24', fontSize: '1.25rem' }}>
                     {'★'.repeat(item.rating)}

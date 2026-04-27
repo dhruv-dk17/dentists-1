@@ -11,7 +11,7 @@ const servicesList = [
     tag: "Prosthodontics",
     desc: "Experience the Bio-functional Prosthetic System (BPS). These aren't just dentures; they are a high-precision restoration of your natural smile, designed for comfort, durability, and a perfect aesthetic fit.",
     features: ["Superior fit and stability", "Natural tooth appearance", "Restores 90% chewing function"],
-    icon: "🦷",
+    image: "images/bps_dentures.png",
     color: "#0EA5E9"
   },
   {
@@ -19,7 +19,7 @@ const servicesList = [
     tag: "Restoration",
     desc: "A permanent solution for missing teeth. Our implants act as artificial tooth roots, providing a strong foundation for fixed replacement teeth that look, feel, and function like natural teeth.",
     features: ["Permanent tooth replacement", "Prevents bone loss", "No impact on adjacent teeth"],
-    icon: "💎",
+    image: "images/dental_implant.png",
     color: "#8B5CF6"
   },
   {
@@ -27,7 +27,7 @@ const servicesList = [
     tag: "Endodontics",
     desc: "Save your natural tooth with our painless RCT procedure. We remove infected pulp, clean the inside of the tooth, and seal it to protect against future infections, all with maximum comfort.",
     features: ["Painless procedure", "Saves natural tooth structure", "Relieves severe tooth pain"],
-    icon: "🔬",
+    image: "images/root_canal.png",
     color: "#F59E0B"
   },
   {
@@ -35,7 +35,7 @@ const servicesList = [
     tag: "Conservation",
     desc: "We believe in preserving as much of your natural tooth as possible. Using advanced techniques, we treat decay and damage while minimizing the removal of healthy tooth structure.",
     features: ["Less drilling required", "Preserves tooth integrity", "Faster recovery time"],
-    icon: "✨",
+    image: "images/modern_dentistry.png",
     color: "#10B981"
   }
 ];
@@ -44,85 +44,74 @@ export default function ServicesPage() {
   return (
     <PageTransition>
       {/* Header */}
-      <section style={{ padding: '150px 0 80px', background: '#0F172A', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ padding: '150px 0 80px', background: 'var(--dark, #0F172A)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
         <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '800px', margin: '0 auto', padding: '0 20px' }}>
           <motion.span 
-            style={{ color: '#0EA5E9', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '2px' }}
+            style={{ color: 'var(--primary, #0EA5E9)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '2px' }}
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={springConfig}
           >
-            Comprehensive Care
+            Our Expertise
           </motion.span>
           <motion.h1 
-            style={{ fontSize: '3.5rem', color: 'white', fontWeight: '800', marginTop: '15px', marginBottom: '20px' }}
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, ...springConfig }}
+            style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)', color: 'white', fontWeight: '800', marginTop: '20px', marginBottom: '30px' }}
+            initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, ...springConfig }}
           >
-            Advanced Treatments
+            Painless Dental <br/>Solutions
           </motion.h1>
           <motion.p 
-            style={{ color: '#94A3B8', fontSize: '1.25rem', lineHeight: '1.6' }}
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, ...springConfig }}
+            style={{ color: 'rgba(255,255,255,0.6)', fontSize: '1.25rem', lineHeight: '1.6', maxWidth: '700px', margin: '0 auto' }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2, ...springConfig }}
           >
-            World-class expertise in every procedure, from routine check-ups to complex restorations.
+            Combining years of expertise with the latest dental technology to provide you with the most comfortable care in Surat.
           </motion.p>
         </div>
       </section>
 
-      {/* Services List */}
-      <section style={{ padding: '100px 0', background: '#F8FAFC' }}>
-        <div className="container" style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 20px' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+      {/* Services Grid */}
+      <section style={{ padding: '100px 0', background: 'var(--light-gray, #F8FAFC)' }}>
+        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px' }}>
             {servicesList.map((service, index) => (
               <motion.div 
                 key={index}
                 style={{ 
-                  background: 'white', borderRadius: '30px', padding: '40px',
-                  display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '40px',
+                  background: 'white', borderRadius: '30px', overflow: 'hidden',
                   boxShadow: '0 10px 30px rgba(0,0,0,0.03)',
                   border: '1px solid #F1F5F9',
-                  alignItems: 'center'
+                  display: 'flex', flexDirection: 'column'
                 }}
-                initial={{ opacity: 0, y: 50, rotateX: 20 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ ...springConfig, delay: index * 0.1 }}
                 whileHover={{ y: -5, boxShadow: '0 20px 40px rgba(14,165,233,0.1)' }}
               >
-                
-                {/* 3D Icon Box */}
-                <motion.div
-                  style={{ 
-                    width: '120px', height: '120px', borderRadius: '24px',
-                    background: `linear-gradient(135deg, ${service.color}22, ${service.color}44)`,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '4rem', perspective: 1000,
-                    border: `1px solid ${service.color}33`
-                  }}
-                  whileHover={{ rotateY: 15, rotateX: -15, scale: 1.05 }}
-                  transition={springConfig}
-                >
-                  <motion.div style={{ transform: 'translateZ(20px)' }}>{service.icon}</motion.div>
-                </motion.div>
+                {/* Procedure Image */}
+                <div style={{ width: '100%', height: '240px', overflow: 'hidden', position: 'relative' }}>
+                  <img src={service.image} alt={service.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <div style={{ position: 'absolute', top: '20px', right: '20px' }}>
+                    <span style={{ color: 'white', fontWeight: '700', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px', background: service.color, padding: '6px 14px', borderRadius: '20px', boxShadow: '0 10px 20px rgba(0,0,0,0.1)' }}>
+                      {service.tag}
+                    </span>
+                  </div>
+                </div>
 
-                {/* Content */}
-                <div>
-                  <span style={{ color: service.color, fontWeight: '700', fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '1px', background: `${service.color}11`, padding: '4px 12px', borderRadius: '20px' }}>
-                    {service.tag}
-                  </span>
-                  <h2 style={{ fontSize: '2rem', color: '#0F172A', fontWeight: '800', marginTop: '15px', marginBottom: '15px' }}>
+                {/* Card Content */}
+                <div style={{ padding: '30px', display: 'flex', flexDirection: 'column', gap: '15px', flexGrow: 1 }}>
+                  <h2 style={{ fontSize: '1.5rem', color: 'var(--dark, #0F172A)', fontWeight: '800', margin: 0 }}>
                     {service.title}
                   </h2>
-                  <p style={{ color: '#64748B', fontSize: '1.125rem', lineHeight: '1.7', marginBottom: '20px' }}>
+                  <p style={{ color: 'var(--gray, #64748B)', fontSize: '1rem', lineHeight: '1.7', margin: 0 }}>
                     {service.desc}
                   </p>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     {service.features.map((feat, i) => (
-                      <li key={i} style={{ color: '#475569', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <span style={{ color: service.color }}>✓</span> {feat}
+                      <li key={i} style={{ color: 'var(--dark, #0F172A)', display: 'flex', alignItems: 'center', gap: '10px', fontWeight: '500', opacity: 0.8 }}>
+                        <span style={{ color: service.color, fontWeight: 'bold' }}>✓</span> {feat}
                       </li>
                     ))}
                   </ul>
                 </div>
-
               </motion.div>
             ))}
           </div>

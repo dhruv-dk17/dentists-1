@@ -50,8 +50,8 @@ const servicesData = [
 
 export default function Services() {
   return (
-    <section style={{ padding: '100px 0', background: '#F8FAFC', position: 'relative', overflow: 'hidden' }}>
-      <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px', position: 'relative', zIndex: 1 }}>
+    <section style={{ padding: 'var(--section-pad) 0', background: 'var(--light-gray)', position: 'relative', overflow: 'hidden' }}>
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         
         {/* Header Section */}
         <motion.div 
@@ -61,17 +61,17 @@ export default function Services() {
           viewport={{ once: true, margin: "-100px" }}
           transition={springConfig}
         >
-          <span style={{ display: 'inline-block', color: '#0EA5E9', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '10px' }}>
+          <span style={{ display: 'inline-block', color: 'var(--primary)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '10px' }}>
             Our Expertise
           </span>
-          <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: '#0F172A', marginBottom: '20px' }}>
+          <h2 style={{ fontSize: 'var(--h2-size)', fontWeight: '800', color: 'var(--dark)', marginBottom: '20px' }}>
             Premium Dental Solutions
           </h2>
-          <p style={{ color: '#64748B', fontSize: '1.125rem', lineHeight: '1.6' }}>
+          <p style={{ color: 'var(--gray)', fontSize: '1.125rem', lineHeight: '1.6' }}>
             From routine care to advanced surgical procedures, we provide comprehensive, painless treatments under one roof.
           </p>
         </motion.div>
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px' }}>
+        <div className="grid-adaptive">
           {servicesData.map((service, index) => (
             <motion.div
               key={index}
@@ -95,10 +95,11 @@ export default function Services() {
               }}
             >
               {/* Service Image */}
-              <div style={{ width: '100%', height: '200px', overflow: 'hidden', background: '#F0F9FF' }}>
+              <div style={{ width: '100%', height: '200px', overflow: 'hidden', background: 'var(--primary-light)' }}>
                 <img 
                   src={service.image} 
                   alt={service.title} 
+                  loading="lazy"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
                 />
@@ -110,7 +111,7 @@ export default function Services() {
               <div style={{ padding: '30px' }}>
                 <div style={{ 
                   display: 'inline-block',
-                  background: '#F0F9FF', color: '#0EA5E9', 
+                  background: 'var(--primary-light)', color: 'var(--primary)', 
                   padding: '4px 12px', borderRadius: '20px', 
                   fontSize: '0.75rem', fontWeight: '700',
                   marginBottom: '15px'
@@ -118,18 +119,18 @@ export default function Services() {
                   {service.tag}
                 </div>
                 
-                <h3 style={{ fontSize: '1.5rem', color: '#0F172A', marginBottom: '15px', fontWeight: '700' }}>
+                <h3 style={{ fontSize: '1.5rem', color: 'var(--dark)', marginBottom: '15px', fontWeight: '700' }}>
                   {service.title}
                 </h3>
                 
-                <p style={{ color: '#64748B', lineHeight: '1.6', marginBottom: '25px' }}>
+                <p style={{ color: 'var(--gray)', lineHeight: '1.6', marginBottom: '25px' }}>
                   {service.desc}
                 </p>
                 
                 <motion.a 
                   href="#" 
                   style={{ 
-                    color: '#0EA5E9', fontWeight: '700', textDecoration: 'none', 
+                    color: 'var(--primary)', fontWeight: '700', textDecoration: 'none', 
                     display: 'inline-flex', alignItems: 'center', gap: '8px'
                   }}
                   whileHover={{ x: 5 }}
