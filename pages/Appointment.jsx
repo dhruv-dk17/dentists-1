@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 import { springConfig, GOOGLE_SCRIPT_URL } from '../constants';
 
 export default function Appointment() {
-  const [formData, setFormData] = useState({ name: '', phone: '', treatment: '' });
+  const [formData, setFormData] = useState({ name: '', phone: '', treatment: '', date: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -41,7 +41,7 @@ export default function Appointment() {
       });
 
       setIsSuccess(true);
-      setFormData({ name: '', phone: '', treatment: '' });
+      setFormData({ name: '', phone: '', treatment: '', date: '' });
     } catch (err) {
       console.error('Submission error:', err);
       setErrorMsg('Could not connect to the booking system. Please call 082002 32074.');
@@ -147,48 +147,53 @@ export default function Appointment() {
                 )}
 
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                  <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1, ...springConfig }}>
-                    <input 
-                      type="text" 
-                      name="name"
-                      placeholder="Full Name" 
-                      required 
-                      value={formData.name}
-                      onChange={handleChange}
-                      style={{ width: '100%', padding: '16px 20px', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.05)', color: 'white', fontSize: '1rem', outline: 'none', boxSizing: 'border-box' }} 
-                    />
-                  </motion.div>
-                  
-                  <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2, ...springConfig }}>
-                    <input 
-                      type="tel" 
-                      name="phone"
-                      placeholder="Phone Number" 
-                      required 
-                      value={formData.phone}
-                      onChange={handleChange}
-                      style={{ width: '100%', padding: '16px 20px', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.05)', color: 'white', fontSize: '1rem', outline: 'none', boxSizing: 'border-box' }} 
-                    />
-                  </motion.div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
+                    <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1, ...springConfig }}>
+                      <label style={{ display: 'block', color: '#94A3B8', marginBottom: '8px', fontSize: '0.9rem' }}>Full Name</label>
+                      <input 
+                        type="text" name="name" value={formData.name} onChange={handleChange} required
+                        placeholder="e.g. Dhruv Khuman"
+                        style={{ width: '100%', padding: '16px 20px', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.05)', color: 'white', fontSize: '1rem', outline: 'none', boxSizing: 'border-box' }} 
+                      />
+                    </motion.div>
+                    
+                    <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2, ...springConfig }}>
+                      <label style={{ display: 'block', color: '#94A3B8', marginBottom: '8px', fontSize: '0.9rem' }}>Phone Number</label>
+                      <input 
+                        type="tel" name="phone" value={formData.phone} onChange={handleChange} required
+                        placeholder="10-digit mobile"
+                        style={{ width: '100%', padding: '16px 20px', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.05)', color: 'white', fontSize: '1rem', outline: 'none', boxSizing: 'border-box' }} 
+                      />
+                    </motion.div>
+                  </div>
 
-                  <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, ...springConfig }}>
-                    <select 
-                      name="treatment"
-                      required 
-                      value={formData.treatment}
-                      onChange={handleChange}
-                      style={{ width: '100%', padding: '16px 20px', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.05)', color: formData.treatment ? 'white' : '#94A3B8', fontSize: '1rem', outline: 'none', appearance: 'none', boxSizing: 'border-box' }}
-                    >
-                      <option value="" disabled>Select Treatment</option>
-                      <option value="General Consultation">General Consultation</option>
-                      <option value="Root Canal Treatment">Root Canal Treatment</option>
-                      <option value="Dental Implants">Dental Implants</option>
-                      <option value="BPS Dentures">BPS Dentures</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </motion.div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
+                    <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, ...springConfig }}>
+                      <label style={{ display: 'block', color: '#94A3B8', marginBottom: '8px', fontSize: '0.9rem' }}>Treatment</label>
+                      <select 
+                        name="treatment" value={formData.treatment} onChange={handleChange} required
+                        style={{ width: '100%', padding: '16px 20px', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.05)', color: formData.treatment ? 'white' : '#94A3B8', fontSize: '1rem', outline: 'none', appearance: 'none', boxSizing: 'border-box' }}
+                      >
+                        <option value="" disabled>Select Treatment</option>
+                        <option value="Checkup">Routine Checkup</option>
+                        <option value="Cleaning">Dental Cleaning</option>
+                        <option value="Root Canal">Root Canal Treatment</option>
+                        <option value="Implants">Dental Implants</option>
+                        <option value="Braces">Braces & Invisalign</option>
+                        <option value="Other">Other Treatment</option>
+                      </select>
+                    </motion.div>
 
-                  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, ...springConfig }} style={{ marginTop: '10px' }}>
+                    <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4, ...springConfig }}>
+                      <label style={{ display: 'block', color: '#94A3B8', marginBottom: '8px', fontSize: '0.9rem' }}>Preferred Date</label>
+                      <input 
+                        type="date" name="date" value={formData.date} onChange={handleChange} required
+                        style={{ width: '100%', padding: '16px 20px', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.05)', color: 'white', fontSize: '1rem', outline: 'none', boxSizing: 'border-box' }} 
+                      />
+                    </motion.div>
+                  </div>
+
+                  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, ...springConfig }} style={{ marginTop: '10px' }}>
                     <motion.button 
                       type="submit"
                       style={{ width: '100%', padding: '18px', background: '#0EA5E9', color: 'white', border: 'none', borderRadius: '16px', fontSize: '1.125rem', fontWeight: '700', cursor: isSubmitting ? 'wait' : 'pointer', boxShadow: '0 10px 20px rgba(14,165,233,0.3)', opacity: isSubmitting ? 0.7 : 1 }}
@@ -196,16 +201,7 @@ export default function Appointment() {
                       whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                       disabled={isSubmitting}
                     >
-                      {isSubmitting ? (
-                        <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
-                          <motion.span
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                            style={{ display: 'inline-block', width: '20px', height: '20px', border: '3px solid rgba(255,255,255,0.3)', borderTop: '3px solid white', borderRadius: '50%' }}
-                          />
-                          Submitting...
-                        </span>
-                      ) : 'Request Appointment'}
+                      {isSubmitting ? 'Submitting...' : 'Confirm Appointment'}
                     </motion.button>
                   </motion.div>
                 </form>
